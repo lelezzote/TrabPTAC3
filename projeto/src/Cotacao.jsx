@@ -7,7 +7,6 @@ export default function CotacaoComData() {
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState(null);
 
-  // Função para formatar a data para o formato yyyyMMdd exigido pela API
   const formatarData = (data) => {
     const [ano, mes, dia] = data.split('-');
     return `${ano}${mes}${dia}`;
@@ -22,7 +21,7 @@ export default function CotacaoComData() {
     const inicioFormatado = formatarData(dataInicio);
     const fimFormatado = formatarData(dataFim);
 
-    const url = 'https://economia.awesomeapi.com.br/json/daily/USD-BRL/365?start_date=${inicioFormatado}&end_date=${fimFormatado}';
+    const url = `https://economia.awesomeapi.com.br/json/daily/USD-BRL/365?start_date=${inicioFormatado}&end_date=${fimFormatado}`;
 
     setCarregando(true);
     setErro(null);
@@ -36,6 +35,14 @@ export default function CotacaoComData() {
     } finally {
       setCarregando(false);
     }
+  };
+
+  // Função para limpar campos e resultados
+  const limparBusca = () => {
+    setDataInicio('');
+    setDataFim('');
+    setDados([]);
+    setErro(null);
   };
 
   return (
@@ -66,6 +73,9 @@ export default function CotacaoComData() {
 
       <div>
         <button onClick={buscarCotacao}>Buscar</button>
+        <button onClick={limparBusca} style={{ marginLeft: '1rem' }}>
+          Limpar
+        </button>
       </div>
 
       {carregando && <p>Carregando...</p>}

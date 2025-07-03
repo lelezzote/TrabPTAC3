@@ -1,5 +1,7 @@
 import React from 'react';
 import Cotacao from './Cotacao';
+import './App.css';
+
 
 function App() {
   return (
