@@ -37,7 +37,7 @@ export default function CotacaoComData() {
     }
   };
 
-  // Função para limpar campos e resultados
+
   const limparBusca = () => {
     setDataInicio('');
     setDataFim('');
